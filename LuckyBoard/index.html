@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LuckyBoard</title>
+    <meta name="description" content="오늘의 운세를 한눈에 확인하는 종합 운세 서비스">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Pretendard -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <main class="container">
+
+        <!-- Header -->
+        <header class="hero">
+
+            <div class="logo">
+                🍀
+            </div>
+
+            <h1>LuckyBoard</h1>
+
+            <p class="subtitle">
+                오늘의 행운을 한눈에
+            </p>
+
+            <div class="today">
+                <span id="todayDate"></span>
+            </div>
+
+        </header>
+
+        <!-- 사용자 정보 선택 -->
+
+        <section class="user-info card" id="userInfoCard">
+
+            <div class="title-row">
+                <h2>🙋 내 정보 선택</h2>
+            </div>
+
+            <div class="select-group">
+
+                <div class="select-field">
+                    <label for="zodiacSelect">별자리</label>
+                    <select id="zodiacSelect" aria-label="별자리 선택">
+                        <option value="" disabled selected>별자리를 선택해주세요</option>
+                    </select>
+                </div>
+
+                <div class="select-field">
+                    <label for="animalSelect">띠</label>
+                    <select id="animalSelect" aria-label="띠 선택">
+                        <option value="" disabled selected>띠를 선택해주세요</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <p class="select-hint">별자리와 띠를 선택한 뒤 아래 버튼을 눌러 오늘의 운세를 확인하세요.</p>
+
+            <p class="select-warning" id="selectWarning" hidden>
+                ⚠️ 별자리와 띠를 모두 선택해주세요.
+            </p>
+
+            <div class="view-btn-wrap">
+                <button id="viewFortuneBtn" type="button">
+                    🔮 오늘의 종합 운세 보기
+                </button>
+            </div>
+
+        </section>
+
+        <!-- 결과 확인 전 안내 -->
+
+        <section class="result-placeholder card" id="resultPlaceholder">
+
+            <p>
+                🔒 별자리와 띠를 선택하고 <strong>[오늘의 종합 운세 보기]</strong> 버튼을 누르면
+                결과가 표시됩니다.
+            </p>
+
+        </section>
+
+        <!-- 결과 영역 (선택 + 버튼 클릭 전까지 숨김) -->
+
+        <div class="result-section hidden" id="resultSection">
+
+            <!-- 종합 운세 -->
+
+            <section class="summary card">
+
+                <div class="title-row">
+                    <h2>✨ 오늘의 종합 운세</h2>
+                    <span id="overallScore">92점</span>
+                </div>
+
+                <p id="overallComment">
+                    오늘은 새로운 기회를 발견하기 좋은 하루입니다.
+                </p>
+
+            </section>
+
+            <!-- 운세 카드 -->
+
+            <section class="fortune-grid">
+
+                <article class="card ohaasa-card" id="ohaasaCard">
+                    <h3>🌅 오하아사 <span id="zodiacLabel">별자리</span> 운세</h3>
+                    <div class="ohaasa-rank-row">
+                        <strong id="ohaasaRank">-</strong>
+                        <span class="ohaasa-rank-total">/ 12위</span>
+                    </div>
+                    <p class="fortune-period" id="zodiacPeriod"></p>
+                    <p class="fortune-desc" id="ohaasaComment">별자리와 띠를 선택하고 버튼을 누르면 오하아사 공식 데이터를 불러옵니다.</p>
+                    <p class="ohaasa-place" id="ohaasaPlace"></p>
+                    <p class="ohaasa-status" id="ohaasaStatus"></p>
+                    <p class="ohaasa-source">
+                        출처: <a href="https://www.asahi.co.jp/ohaasa/week/horoscope/" target="_blank" rel="noopener">おはよう朝日です 오하아사 공식 별자리 운세</a>
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>🐲 <span id="animalLabel">띠</span> 운세</h3>
+                    <strong id="animal">좋음</strong>
+                    <p class="fortune-desc" id="animalDesc"></p>
+                </article>
+
+                <article class="card">
+                    <h3>🎴 오늘의 타로</h3>
+                    <strong id="tarot">The Star</strong>
+                    <p class="fortune-desc" id="tarotDesc"></p>
+                </article>
+
+                <article class="card">
+                    <h3>🎲 오늘의 뽑기</h3>
+                    <strong id="luck">대길</strong>
+                    <p class="fortune-desc" id="luckDesc"></p>
+                </article>
+
+                <article class="card">
+                    <h3>🍀 행운 아이템</h3>
+                    <strong id="item">화이트 셔츠</strong>
+                    <p class="fortune-desc" id="itemDesc"></p>
+                </article>
+
+                <article class="card">
+                    <h3>🎨 행운 컬러</h3>
+                    <strong id="color">Sky Blue</strong>
+                    <p class="fortune-desc" id="colorDesc"></p>
+                </article>
+
+                <article class="card">
+                    <h3>🔢 행운 숫자</h3>
+                    <strong id="number">7</strong>
+                    <p class="fortune-desc" id="numberDesc"></p>
+                </article>
+
+            </section>
+
+            <!-- 오늘의 운세 종합평 -->
+
+            <section class="verdict card">
+
+                <h2>🧭 오늘의 운세 종합평</h2>
+
+                <p id="summaryVerdict">
+                    별자리와 띠를 선택하고 버튼을 누르면 모든 운세를 한 줄로 종합한 오늘의 운세 총평이 표시됩니다.
+                </p>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer>
+
+        <p>
+            © 2026 LuckyBoard · Today's Fortune Dashboard
+        </p>
+
+    </footer>
+
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>
