@@ -168,6 +168,203 @@ body{
 
 }
 
+/* 사용자 정보 선택 */
+
+.user-info{
+
+    margin-bottom:30px;
+
+}
+
+.select-group{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:16px;
+
+    margin-top:6px;
+
+}
+
+.select-field{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.select-field label{
+
+    font-size:.9rem;
+
+    color:var(--sub);
+
+}
+
+.select-field select{
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    -moz-appearance:none;
+
+    width:100%;
+
+    padding:12px 16px;
+
+    border-radius:14px;
+
+    background-color:rgba(255,255,255,.06);
+
+    border:1px solid var(--border);
+
+    color:var(--text);
+
+    font-family:'Pretendard',sans-serif;
+
+    font-size:1rem;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    background-image:
+    linear-gradient(45deg,transparent 50%,var(--sub) 50%),
+    linear-gradient(135deg,var(--sub) 50%,transparent 50%);
+
+    background-position:
+    calc(100% - 22px) center,
+    calc(100% - 16px) center;
+
+    background-size:6px 6px,6px 6px;
+
+    background-repeat:no-repeat;
+
+}
+
+.select-field select:hover,
+.select-field select:focus{
+
+    border-color:rgba(140,125,255,.6);
+
+    outline:none;
+
+}
+
+.select-field select option{
+
+    background:#12182D;
+
+    color:var(--text);
+
+}
+
+.select-hint{
+
+    margin-top:14px;
+
+    font-size:.85rem;
+
+    color:var(--sub);
+
+    opacity:.8;
+
+}
+
+.select-warning{
+
+    margin-top:12px;
+
+    padding:10px 14px;
+
+    border-radius:12px;
+
+    background:rgba(255,120,120,.12);
+
+    border:1px solid rgba(255,120,120,.35);
+
+    color:#FFB4B4;
+
+    font-size:.9rem;
+
+}
+
+.view-btn-wrap{
+
+    text-align:center;
+
+    margin-top:24px;
+
+}
+
+#viewFortuneBtn{
+
+    width:100%;
+
+    max-width:360px;
+
+}
+
+/* 결과 확인 전 안내 박스 */
+
+.result-placeholder{
+
+    text-align:center;
+
+    color:var(--sub);
+
+    margin-bottom:30px;
+
+    line-height:1.7;
+
+}
+
+.result-placeholder strong{
+
+    color:var(--text);
+
+}
+
+/* 결과 섹션 표시/숨김 */
+
+.result-section{
+
+    animation:fadeIn .5s ease;
+
+}
+
+.result-section.hidden{
+
+    display:none;
+
+}
+
+@keyframes fadeIn{
+
+    0%{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
 /* 종합운세 */
 
 .summary{
@@ -254,41 +451,177 @@ body{
 
 }
 
-/* Quote */
+/* 별자리 기간 표시 */
 
-.quote{
+.fortune-period{
+
+    margin-top:10px;
+
+    font-size:.8rem;
+
+    color:var(--accent2);
+
+    font-weight:500;
+
+}
+
+/* 운세 설명 텍스트 (전체 항목 공통) */
+
+.fortune-desc{
+
+    margin-top:12px;
+
+    font-size:.85rem;
+
+    color:var(--sub);
+
+    line-height:1.6;
+
+    font-weight:400;
+
+    text-align:left;
+
+}
+
+/* 오하아사 + 별자리 통합 카드 */
+
+.ohaasa-card{
+
+    text-align:left;
+
+}
+
+.ohaasa-card h3{
 
     text-align:center;
 
 }
 
-.quote h2{
+.ohaasa-rank-row{
+
+    display:flex;
+
+    align-items:baseline;
+
+    justify-content:center;
+
+    gap:6px;
+
+}
+
+.ohaasa-rank-row strong{
+
+    font-size:2rem;
+
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+
+}
+
+.ohaasa-rank-total{
+
+    font-size:.9rem;
+
+    color:var(--sub);
+
+}
+
+.ohaasa-card .fortune-period{
+
+    text-align:center;
+
+}
+
+.ohaasa-place{
+
+    margin-top:10px;
+
+    font-size:.85rem;
+
+    color:var(--accent2);
+
+    line-height:1.6;
+
+}
+
+.ohaasa-status{
+
+    margin-top:10px;
+
+    font-size:.78rem;
+
+    color:var(--sub);
+
+    opacity:.85;
+
+    min-height:1.1em;
+
+}
+
+.ohaasa-source{
+
+    margin-top:14px;
+
+    padding-top:12px;
+
+    border-top:1px solid var(--border);
+
+    font-size:.72rem;
+
+    color:var(--sub);
+
+    opacity:.7;
+
+}
+
+.ohaasa-source a{
+
+    color:var(--accent2);
+
+    text-decoration:none;
+
+}
+
+.ohaasa-source a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* 오늘의 운세 종합평 */
+
+.verdict{
+
+    text-align:center;
+
+    background:linear-gradient(135deg,rgba(139,125,255,.16),rgba(92,200,255,.12));
+
+}
+
+.verdict h2{
 
     margin-bottom:20px;
 
 }
 
-blockquote{
+#summaryVerdict{
 
     font-size:1.15rem;
 
-    color:var(--sub);
+    color:var(--text);
 
     line-height:1.8;
 
-    font-style:italic;
+    font-weight:500;
 
 }
 
 /* 버튼 */
-
-.actions{
-
-    text-align:center;
-
-    margin-top:35px;
-
-}
 
 button{
 
@@ -403,6 +736,12 @@ footer{
     .card{
 
         padding:22px;
+
+    }
+
+    .select-group{
+
+        grid-template-columns:1fr;
 
     }
 
