@@ -42,88 +42,146 @@
 
         </header>
 
-        <!-- 종합 운세 -->
+        <!-- 사용자 정보 선택 -->
 
-        <section class="summary card">
+        <section class="user-info card" id="userInfoCard">
 
             <div class="title-row">
-                <h2>✨ 오늘의 종합 운세</h2>
-                <span id="overallScore">92점</span>
+                <h2>🙋 내 정보 선택</h2>
             </div>
 
-            <p id="overallComment">
-                오늘은 새로운 기회를 발견하기 좋은 하루입니다.
+            <div class="select-group">
+
+                <div class="select-field">
+                    <label for="zodiacSelect">별자리</label>
+                    <select id="zodiacSelect" aria-label="별자리 선택">
+                        <option value="" disabled selected>별자리를 선택해주세요</option>
+                    </select>
+                </div>
+
+                <div class="select-field">
+                    <label for="animalSelect">띠</label>
+                    <select id="animalSelect" aria-label="띠 선택">
+                        <option value="" disabled selected>띠를 선택해주세요</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <p class="select-hint">별자리와 띠를 선택한 뒤 아래 버튼을 눌러 오늘의 운세를 확인하세요.</p>
+
+            <p class="select-warning" id="selectWarning" hidden>
+                ⚠️ 별자리와 띠를 모두 선택해주세요.
+            </p>
+
+            <div class="view-btn-wrap">
+                <button id="viewFortuneBtn" type="button">
+                    🔮 오늘의 종합 운세 보기
+                </button>
+            </div>
+
+        </section>
+
+        <!-- 결과 확인 전 안내 -->
+
+        <section class="result-placeholder card" id="resultPlaceholder">
+
+            <p>
+                🔒 별자리와 띠를 선택하고 <strong>[오늘의 종합 운세 보기]</strong> 버튼을 누르면
+                결과가 표시됩니다.
             </p>
 
         </section>
 
-        <!-- 운세 카드 -->
+        <!-- 결과 영역 (선택 + 버튼 클릭 전까지 숨김) -->
 
-        <section class="fortune-grid">
+        <div class="result-section hidden" id="resultSection">
 
-            <article class="card">
-                <h3>🌅 오하아사</h3>
-                <strong id="ohayou">95점</strong>
-            </article>
+            <!-- 종합 운세 -->
 
-            <article class="card">
-                <h3>⭐ 별자리</h3>
-                <strong id="zodiac">★★★★☆</strong>
-            </article>
+            <section class="summary card">
 
-            <article class="card">
-                <h3>🐲 띠운세</h3>
-                <strong id="animal">좋음</strong>
-            </article>
+                <div class="title-row">
+                    <h2>✨ 오늘의 종합 운세</h2>
+                    <span id="overallScore">92점</span>
+                </div>
 
-            <article class="card">
-                <h3>🎴 오늘의 타로</h3>
-                <strong id="tarot">The Star</strong>
-            </article>
+                <p id="overallComment">
+                    오늘은 새로운 기회를 발견하기 좋은 하루입니다.
+                </p>
 
-            <article class="card">
-                <h3>🎲 오늘의 뽑기</h3>
-                <strong id="luck">대길</strong>
-            </article>
+            </section>
 
-            <article class="card">
-                <h3>🍀 행운 아이템</h3>
-                <strong id="item">화이트 셔츠</strong>
-            </article>
+            <!-- 운세 카드 -->
 
-            <article class="card">
-                <h3>🎨 행운 컬러</h3>
-                <strong id="color">Sky Blue</strong>
-            </article>
+            <section class="fortune-grid">
 
-            <article class="card">
-                <h3>🔢 행운 숫자</h3>
-                <strong id="number">7</strong>
-            </article>
+                <article class="card ohaasa-card" id="ohaasaCard">
+                    <h3>🌅 오하아사 <span id="zodiacLabel">별자리</span> 운세</h3>
+                    <div class="ohaasa-rank-row">
+                        <strong id="ohaasaRank">-</strong>
+                        <span class="ohaasa-rank-total">/ 12위</span>
+                    </div>
+                    <p class="fortune-period" id="zodiacPeriod"></p>
+                    <p class="fortune-desc" id="ohaasaComment">별자리와 띠를 선택하고 버튼을 누르면 오하아사 공식 데이터를 불러옵니다.</p>
+                    <p class="ohaasa-place" id="ohaasaPlace"></p>
+                    <p class="ohaasa-status" id="ohaasaStatus"></p>
+                    <p class="ohaasa-source">
+                        출처: <a href="https://www.asahi.co.jp/ohaasa/week/horoscope/" target="_blank" rel="noopener">おはよう朝日です 오하아사 공식 별자리 운세</a>
+                    </p>
+                </article>
 
-        </section>
+                <article class="card">
+                    <h3>🐲 <span id="animalLabel">띠</span> 운세</h3>
+                    <strong id="animal">좋음</strong>
+                    <p class="fortune-desc" id="animalDesc"></p>
+                </article>
 
-        <!-- 오늘의 한마디 -->
+                <article class="card">
+                    <h3>🎴 오늘의 타로</h3>
+                    <strong id="tarot">The Star</strong>
+                    <p class="fortune-desc" id="tarotDesc"></p>
+                </article>
 
-        <section class="quote card">
+                <article class="card">
+                    <h3>🎲 오늘의 뽑기</h3>
+                    <strong id="luck">대길</strong>
+                    <p class="fortune-desc" id="luckDesc"></p>
+                </article>
 
-            <h2>💬 오늘의 한마디</h2>
+                <article class="card">
+                    <h3>🍀 행운 아이템</h3>
+                    <strong id="item">화이트 셔츠</strong>
+                    <p class="fortune-desc" id="itemDesc"></p>
+                </article>
 
-            <blockquote id="quote">
-                작은 행운은 준비된 사람에게 먼저 찾아옵니다.
-            </blockquote>
+                <article class="card">
+                    <h3>🎨 행운 컬러</h3>
+                    <strong id="color">Sky Blue</strong>
+                    <p class="fortune-desc" id="colorDesc"></p>
+                </article>
 
-        </section>
+                <article class="card">
+                    <h3>🔢 행운 숫자</h3>
+                    <strong id="number">7</strong>
+                    <p class="fortune-desc" id="numberDesc"></p>
+                </article>
 
-        <!-- 버튼 -->
+            </section>
 
-        <section class="actions">
+            <!-- 오늘의 운세 종합평 -->
 
-            <button id="refreshBtn">
-                🔄 오늘의 운세 다시 뽑기
-            </button>
+            <section class="verdict card">
 
-        </section>
+                <h2>🧭 오늘의 운세 종합평</h2>
+
+                <p id="summaryVerdict">
+                    별자리와 띠를 선택하고 버튼을 누르면 모든 운세를 한 줄로 종합한 오늘의 운세 총평이 표시됩니다.
+                </p>
+
+            </section>
+
+        </div>
 
     </main>
 
